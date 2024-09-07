@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import pool from '../../lib/db';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log('test-db');
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT NOW()');

@@ -1,13 +1,14 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
-import pool from '@/lib/db';
+import pool from '../lib/db';
 
 async function getCourses() {
+  console.log('getCourses')
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT id, title FROM courses');
+    console.log(10, result.rows)
     client.release();
     return result.rows.map((course) => ({
       id: course.id,
@@ -21,9 +22,10 @@ async function getCourses() {
 }
 
 export default async function Home() {
-  let courses = []
+  let courses: Awaited<ReturnType<typeof getCourses>> = [] // Use Awaited to resolve the Promise type
   try {
     courses = await getCourses()
+    console.log(27, courses)
   } catch (error) {
     console.error('Failed to fetch courses:', error)
     // You might want to add some error UI here

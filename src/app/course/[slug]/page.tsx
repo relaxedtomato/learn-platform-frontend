@@ -1,6 +1,5 @@
 'use client'
 
-import { notFound } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Stream } from "@cloudflare/stream-react";
@@ -28,11 +27,6 @@ type Course = {
   sections: Section[];
 };
 
-function isUserEnrolled(courseId: number, userId: string) {
-  // In a real application, you would check the user's enrollment status in your database
-  return false
-}
-
 export default function CoursePage({ params }: { params: { slug: string } }) {
 const [course, setCourse] = useState<Course>({ id: 0, title: '', description: '', sections: [] });
 const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
@@ -51,7 +45,7 @@ useEffect(() => {
 }, [params.slug]);
 
 const handleNext = () => {
-  if (currentSectionIndex < course.sections.length - 1) {
+  if (currentSectionIndex < course.sections?.length - 1) {
     setCurrentSectionIndex(currentSectionIndex + 1);
   }
 };
@@ -84,7 +78,7 @@ return (
       {isEnrolled ? (
         <div>
           {/* <h2 className="text-2xl font-semibold mb-4">Full Course Content</h2> */}
-          {course.sections.length > 0 && (
+          {course.sections?.length > 0 && (
             <div>
               <h3 className="text-3xl font-bold mb-2">{course.sections[currentSectionIndex].title}</h3>
               <hr className="mb-4"/>
@@ -96,7 +90,7 @@ return (
                       {lesson.videoId ? (
                         <Stream controls src={lesson.videoId} />
                       ) : (
-                        <img src={lesson.imageUrl} alt={lesson.title} />
+                        <img src={lesson.imageUrl || ''} alt={lesson.title} />
                       )}
                     </div>
                   ) : (
