@@ -15,8 +15,19 @@ CREATE TABLE courses (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT,
+    slug VARCHAR(255) NOT NULL UNIQUE,
     -- instructor_id INTEGER REFERENCES users(id),
     -- price DECIMAL(10, 2),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create Sections table
+CREATE TABLE sections (
+    id SERIAL PRIMARY KEY,
+    course_id INTEGER REFERENCES courses(id),
+    title VARCHAR(255) NOT NULL,
+    order_index INTEGER NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -31,10 +42,10 @@ CREATE TABLE enrollments (
     UNIQUE(user_id, course_id)
 );
 
--- Create Lessons table
 CREATE TABLE lessons (
     id SERIAL PRIMARY KEY,
     course_id INTEGER REFERENCES courses(id),
+    section_id INTEGER REFERENCES sections(id),
     title VARCHAR(255) NOT NULL,
     content_url TEXT,
     order_index INTEGER NOT NULL,
