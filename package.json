@@ -6,14 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start-postgres": "docker-compose --env-file .env.local up -d",
+    "start-bash": "docker exec -it learn-platform-db-1 bash",
+    "seed": "psql -U lpuser -d learn-platform -f ./seeds/react-beginner.sql"
   },
   "dependencies": {
+    "@cloudflare/stream-react": "^1.9.1",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-slot": "^1.1.0",
     "@types/pg": "^8.11.8",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
+    "lucide-react": "^0.439.0",
     "next": "14.2.8",
     "pg": "^8.12.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
