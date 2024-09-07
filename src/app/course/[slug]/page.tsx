@@ -1,6 +1,5 @@
 'use client'
 
-import { notFound } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Stream } from "@cloudflare/stream-react";
@@ -27,11 +26,6 @@ type Course = {
   description: string;
   sections: Section[];
 };
-
-function isUserEnrolled(courseId: number, userId: string) {
-  // In a real application, you would check the user's enrollment status in your database
-  return false
-}
 
 export default function CoursePage({ params }: { params: { slug: string } }) {
 const [course, setCourse] = useState<Course>({ id: 0, title: '', description: '', sections: [] });
@@ -96,7 +90,7 @@ return (
                       {lesson.videoId ? (
                         <Stream controls src={lesson.videoId} />
                       ) : (
-                        <img src={lesson.imageUrl} alt={lesson.title} />
+                        <img src={lesson.imageUrl || ''} alt={lesson.title} />
                       )}
                     </div>
                   ) : (

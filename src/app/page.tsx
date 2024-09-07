@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
@@ -21,7 +20,7 @@ async function getCourses() {
 }
 
 export default async function Home() {
-  let courses = []
+  let courses: Awaited<ReturnType<typeof getCourses>> = [] // Use Awaited to resolve the Promise type
   try {
     courses = await getCourses()
   } catch (error) {
