@@ -7,6 +7,7 @@ import { Stream } from "@cloudflare/stream-react";
 import { useEffect, useState } from 'react';
 
 // Define types for Course, Section, and Lesson
+// test
 type Lesson = {
   id: number;
   title: string;
