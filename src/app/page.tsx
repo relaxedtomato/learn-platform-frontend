@@ -38,9 +38,9 @@ export default async function Home() {
           <Link href="/" className="text-2xl font-bold">
             LearnPlatform
           </Link>
-          <Button asChild>
+          {/* <Button asChild>
             <Link href="/login">Login</Link>
-          </Button>
+          </Button> */}
         </nav>
       </header>
 
