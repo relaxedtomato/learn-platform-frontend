@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-
+import { unstable_cache } from 'next/cache';
 import pool from '../lib/db';
 
-async function getCourses() {
+const getCourses = unstable_cache(async () => {
   console.log('getCourses')
   try {
     const client = await pool.connect();
@@ -19,7 +19,7 @@ async function getCourses() {
     console.error('Failed to fetch courses from database:', error);
     throw error;
   }
-}
+}, ['courses'], { revalidate: 3600 });
 
 export default async function Home() {
   let courses: Awaited<ReturnType<typeof getCourses>> = [] // Use Awaited to resolve the Promise type
@@ -38,9 +38,6 @@ export default async function Home() {
           <Link href="/" className="text-2xl font-bold">
             LearnPlatform
           </Link>
-          {/* <Button asChild>
-            <Link href="/login">Login</Link>
-          </Button> */}
         </nav>
       </header>
 
