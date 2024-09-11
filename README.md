@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Learn Platform Frontend
 
-## Getting Started
+This frontend application, using NextJS, is a learning platform that allows users to access course content hosted on Railway.
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (version 16 or higher)
+- npm (Node Package Manager)
+- Railway CLI
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running Locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository:**
+   ```bash
+   git clone learn-platform-frontend
+   cd learn-platform-frontend
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Set up environment variables:**
+   Create a `.env.local` file in the root of your project and add the following:
+   - [ ] TODO: Explain what these variables are for, and where to retrieve them.
+   ```plaintext
+        PGUSER
+        PGHOST
+        PGNAME
+        PGPASSWORD
+        PGPORT
+        NEXT_PUBLIC_API_DOMAIN
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+   The `page.tsx` which displays all courses file will be rendered on app build, so we will need access to the postgres database. Ensure the database and API is deployed before deploying the frontend app. You can find the backend repo. 
+   [TODO] Add link to learn-platform-api.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    For testing the deployed postgres database, you can update the `.env.local` to point to the postgres database variables in Railway.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Run the application:**
+   ```bash
+   npm run dev
+   ```
+   Open your browser and navigate to `http://localhost:3000`.
 
-## Deploy on Vercel
+   You will see the course page with a list of courses.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploying on Railway
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] TODO: Replace with steps to deploy from GH:
+
+Your application should now be live on Railway!
+
+## Additional Notes
+- For any issues, refer to the [Railway documentation](https://docs.railway.app/).
