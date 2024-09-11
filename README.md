@@ -8,49 +8,26 @@ This frontend application, using NextJS, is a learning platform that allows user
 - npm (Node Package Manager)
 - Railway CLI
 
-## Running Locally
+## Frontend Deployment
+The frontend is created using NextJs. We can deploy the backend via `GitHub Repo` by selcting the `learn-platform` repository and deploying the `production` and `staging` branches to separate environments: https://github.com/relaxedtomato/learn-platform.
 
-1. **Clone the repository:**
-   ```bash
-   git clone learn-platform-frontend
-   cd learn-platform-frontend
-   ```
+After doing this, we need to add the following environment variables (preferrably as shared) to use across the Railway project:
+```plaintext
+   PGUSER (available from Railway PostgresSQL service)
+   PGHOST (available from Railway PostgresSQL service)
+   PGNAME=railway (the database name by default is railway)
+   PGPASSWORD (available from Railway PostgresSQL service)
+   PGPORT (available from Railway PostgresSQL service)
+   NEXT_PUBLIC_API_DOMAIN (public URI of learn-platform-api service)
+```
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+Ensure the backend service is publicly available!
 
-3. **Set up environment variables:**
-   Create a `.env.local` file in the root of your project and add the following:
-   - [ ] TODO: Explain what these variables are for, and where to retrieve them.
-   ```plaintext
-        PGUSER
-        PGHOST
-        PGNAME
-        PGPASSWORD
-        PGPORT
-        NEXT_PUBLIC_API_DOMAIN
-   ```
-
-   The `page.tsx` which displays all courses file will be rendered on app build, so we will need access to the postgres database. Ensure the database and API is deployed before deploying the frontend app. You can find the backend repo. 
-   [TODO] Add link to learn-platform-api.
-
-    For testing the deployed postgres database, you can update the `.env.local` to point to the postgres database variables in Railway.
-
-4. **Run the application:**
-   ```bash
-   npm run dev
-   ```
-   Open your browser and navigate to `http://localhost:3000`.
-
-   You will see the course page with a list of courses.
-
-## Deploying on Railway
-
-- [ ] TODO: Replace with steps to deploy from GH:
+We need to connect to the database to statically generate the courses landing page on each build using a connection to the database. The API will be used to retrieve the individual course content.
 
 Your application should now be live on Railway!
+
+Visit the public URL to view all courses and click on a course to review the course content.
 
 ## Additional Notes
 - For any issues, refer to the [Railway documentation](https://docs.railway.app/).
