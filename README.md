@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Learn Platform Frontend
 
-## Getting Started
+This frontend application, using NextJS, is a learning platform that allows users to access course content hosted on Railway.
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js (version 16 or higher)
+- npm (Node Package Manager)
+- Railway CLI
+
+## Frontend Deployment
+The frontend is created using NextJs. We can deploy the backend via `GitHub Repo` by selcting the `learn-platform` repository and deploying the `production` and `staging` branches to separate environments: https://github.com/relaxedtomato/learn-platform.
+
+After doing this, we need to add the following environment variables (preferrably as shared) to use across the Railway project:
+```plaintext
+   PGUSER (available from Railway PostgresSQL service)
+   PGHOST (available from Railway PostgresSQL service)
+   PGNAME=railway (the database name by default is railway)
+   PGPASSWORD (available from Railway PostgresSQL service)
+   PGPORT (available from Railway PostgresSQL service)
+   NEXT_PUBLIC_API_DOMAIN (public URI of learn-platform-api service)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ensure the backend service is publicly available!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We need to connect to the database to statically generate the courses landing page on each build using a connection to the database. The API will be used to retrieve the individual course content.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Your application should now be live on Railway!
 
-## Learn More
+Visit the public URL to view all courses and click on a course to review the course content.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Additional Notes
+- For any issues, refer to the [Railway documentation](https://docs.railway.app/).

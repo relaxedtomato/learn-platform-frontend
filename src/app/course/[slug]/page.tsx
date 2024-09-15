@@ -7,6 +7,7 @@ import { Stream } from "@cloudflare/stream-react";
 import { useEffect, useState } from 'react';
 
 // Define types for Course, Section, and Lesson
+// test
 type Lesson = {
   id: number;
   title: string;
@@ -35,7 +36,7 @@ const isEnrolled = true
 useEffect(() => {
   console.log('params', params)
   const fetchCourse = async () => {
-    const response = await fetch(`/api/courseContent?slug=${params.slug}`);
+    const response = await fetch(`https://${process.env.NEXT_PUBLIC_API_DOMAIN}/courses/${params.slug}`);
     const data = await response.json();
     console.log('Updated params with data', params, data)
     setCourse(data);
